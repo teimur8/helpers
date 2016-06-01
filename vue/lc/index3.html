@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .completed1{
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <tasks :list="tasks"></tasks>
+    </div>
+
+
+    <template id="taks-template">
+        <h1>My Tasks <span v-show="asdasd">({{ asdasd }})</span></h1>
+        <ul v-show="list.length">
+            <li :class="{ 'completed1' : task.completed }"
+                v-for="task in list"
+                @click="task.completed = ! task.completed"
+                    >
+                {{ task.title }}
+                <span @click="deleteItem(task)">X</span>
+            </li>
+        </ul>
+
+        <p v-else>
+           Задач нет!
+        </p>
+        <input type="text" v-model="input123"> <button @click="addItem(input123)">Add</button>
+    </template>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.24/vue.min.js"></script>
+    <script>
+        Vue.component('tasks', {
+            props: ['list'],
+            template: '#taks-template',
+            computed: {
+                asdasd: function () {
+                    return this.list.filter(this.isPorgress).length ;
+                }
+            },
+            methods:{
+                isComplited: function (task) {
+                    return task.completed;
+                },
+                isPorgress: function(task){
+                    return ! this.isComplited(task);
+                },
+                deleteItem: function(task){
+                    this.list.$remove(task);
+                },
+                addItem: function(asd){
+                    this.list.push({ title:asd, completed:false });
+                }
+
+            }
+        });
+        new Vue({
+            el: '#app',
+            data: {
+                tasks: [
+                    {title: 'Задача', completed: false},
+                    {title: 'Задача1', completed: false},
+                    {title: 'Задача2', completed: true},
+                    {title: 'Задача3', completed: false}
+                ]
+            },
+
+        });
+    </script>
+</body>
+</html>

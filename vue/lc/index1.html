@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .completed1{
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <ul>
+            <li :class="{ 'completed1' : task.completed }"
+                v-for="task in tasks"
+                @click="task.completed = ! task.completed"
+            >
+                {{ task.title }}
+            </li>
+        </ul>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.24/vue.min.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                tasks: [
+                    {title: 'Задача', completed: false},
+                    {title: 'Задача1', completed: false},
+                    {title: 'Задача2', completed: true},
+                    {title: 'Задача3', completed: false}
+                ]
+            }
+        });
+    </script>
+</body>
+</html>
