@@ -1,0 +1,12 @@
+
+// команды
+
+cat /proc/version -проверить версию линукса
+
+yum update
+
+// Install MySQL Server on CentOS
+https://support.rackspace.com/how-to/installing-mysql-server-on-centos/
+
+
+ps aux | grep mysql
