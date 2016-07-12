@@ -1,0 +1,11 @@
+ public static function getCompanyByEmail($email)
+    {
+        $domain = self::emailDomain($email);
+        return Company::where('email_domain', 'REGEXP', '[[:<:]]' . $domain . '[[:>:]]')->first();
+    }
+
+public static function emailDomain($email)
+{
+    $email_back = explode("@", $email);
+    return explode(".", $email_back[1])[0];
+}
