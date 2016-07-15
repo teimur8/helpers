@@ -5,4 +5,4 @@ if($request->ajax()){
 	return view('blog.ajax.index',['data'=>$data])->render();
 }
 
-//view
+// ajax select
