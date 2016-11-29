@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+
+<div id="app">
+    <!--
+        v-on - short @
+    -->
+    <form action="" @submit.prevent="sendEvent">
+        <button type="submit" @click="doSomething">Send Message</button>
+    </form>
+
+    <br>
+
+    <form @submit.prevent>
+        <button type="submit" @click="updateCounter">{{ counter }}</button>
+    </form>
+</div>
+
+<script src="vue.js"></script>
+
+<script>
+    new Vue({
+        el: '#app',
+
+        data: {
+            message: '',
+            counter: 0
+        },
+
+        methods: {
+            sendEvent: function () {
+                alert(123);
+            },
+
+            updateCounter: function () {
+                this.counter ++;
+            }
+        }
+
+    });
+</script>
+</body>
+</html>

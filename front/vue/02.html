@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+<style>
+    .error{
+        color: red;
+    }
+</style>
+
+<div id="app">
+    <form action="">
+        <!--
+            v-if='!message' - hidden all block
+            v-show='!message' - style display:none
+        -->
+        <span class="error" v-show="!message">
+            You must enter a message
+        </span>
+        <br>
+
+        <textarea name="" id="" cols="30" rows="10" v-model="message"></textarea>
+        <br>
+
+        <button type="submit" v-show="message">Send Message</button>
+
+        <br>
+        <pre>{{ $data | json }}</pre>
+
+    </form>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.js"></script>
+
+<script>
+    new Vue({
+        el: '#app',
+
+        data: {
+            message: ''
+        }
+
+    });
+</script>
+</body>
+</html>
