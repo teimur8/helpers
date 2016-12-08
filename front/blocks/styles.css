@@ -1,0 +1,182 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after {
+  content: '';
+  content: none; }
+
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+* {
+  box-sizing: border-box; }
+
+.b_modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  padding-top: 100px;
+  /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: black;
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4)
+  /* Black w/ opacity */ }
+  .b_modal__content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    -webkit-animation-name: animatetop;
+            animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+            animation-duration: 0.4s; }
+  .b_modal__header {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white; }
+  .b_modal__body {
+    padding: 2px 16px; }
+  .b_modal__footer {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white; }
+  .b_modal__close-btn {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold; }
+    .b_modal__close-btn:hover, .b_modal__close-btn:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer; }
+  .b_modal.open {
+    display: block; }
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0; }
+  to {
+    top: 0;
+    opacity: 1; } }
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0; }
+  to {
+    top: 0;
+    opacity: 1; } }
+.b_menu_accordion {
+  width: 100%;
+  font-weight: bold;
+  font-size: 14px;
+  color: #073c83; }
+  .b_menu_accordion li {
+    list-style: none; }
+  .b_menu_accordion .b_menu_accordion__list {
+    padding: 0; }
+  .b_menu_accordion .b_menu_accordion__title {
+    box-sizing: border-box;
+    font-size: 15px;
+    margin: 0;
+    width: 100%;
+    height: 100%; }
+    .b_menu_accordion .b_menu_accordion__title:hover {
+      background-color: #e3e9ec; }
+  .b_menu_accordion .b_menu_accordion__link {
+    box-sizing: border-box;
+    color: #073c83; }
+
+.b_menu_accordion__item, .b_menu_accordion__sub_item {
+  background: rgba(212, 202, 202, 0);
+  position: relative;
+  cursor: pointer; }
+  .b_menu_accordion__item.active .b_menu_accordion__title, .active.b_menu_accordion__sub_item .b_menu_accordion__title {
+    background-color: red;
+    color: white; }
+    .b_menu_accordion__item.active .b_menu_accordion__title a, .active.b_menu_accordion__sub_item .b_menu_accordion__title a {
+      color: white; }
+
+.b_menu_accordion__sub_item.active {
+  background-color: red;
+  color: white; }
+  .b_menu_accordion__sub_item.active .b_menu_accordion__link {
+    color: white;
+    background-color: red; }
+  .b_menu_accordion__sub_item.active:hover {
+    background-color: red; }
+.b_menu_accordion__sub_item:hover {
+  background-color: #e3e9ec; }
+
+.b_menu_accordion__sub_list {
+  max-height: 0;
+  opacity: 0;
+  padding: 0 0 0 20px;
+  overflow: hidden;
+  -webkit-transition: 0.3s ease-in-out;
+          transition: 0.3s ease-in-out; }
+  .b_menu_accordion__sub_list.show {
+    opacity: 1;
+    max-height: inherit; }
+
+.b_menu_accordion__title,
+.b_menu_accordion__sub_item {
+  min-height: 17px;
+  padding: 5px; }
+
+.b_menu_accordion__link {
+  text-decoration: none; }
+  .b_menu_accordion__link.link_item {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 5px; }
+    .b_menu_accordion__link.link_item:hover {
+      background-color: #e3e9ec; }
+    .b_menu_accordion__link.link_item.active {
+      background-color: red;
+      color: #fff; }
