@@ -105,10 +105,15 @@
 </div>
 
 <script>
+//    $('.b_menu_accordion__title').on('click', function(){
+//        $('.b_menu_accordion__sub_list').removeClass('show');
+//        $('.b_menu_accordion__item').removeClass('active');
+//        $(this).parent('.b_menu_accordion__item').addClass('active');
+//        $(this).siblings('.b_menu_accordion__sub_list').toggleClass('show');
+//    });
+
     $('.b_menu_accordion__title').on('click', function(){
-        $('.b_menu_accordion__sub_list').removeClass('show');
-        $('.b_menu_accordion__item').removeClass('active');
-        $(this).parent('.b_menu_accordion__item').addClass('active');
+        $(this).parent('.b_menu_accordion__item').toggleClass('activated');
         $(this).siblings('.b_menu_accordion__sub_list').toggleClass('show');
     });
 </script>

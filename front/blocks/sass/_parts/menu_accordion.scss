@@ -21,10 +21,18 @@ $b_menu_accordion_color: rgba(212, 202, 202, 0.0);
     &:hover {
       background-color: #e3e9ec;
     }
+    &:after {
+      content: '\02795'; /* Unicode character for "plus" sign (+) */
+      font-size: 13px;
+      color: #777;
+      float: right;
+      margin-left: 5px;
+    }
   }
   .b_menu_accordion__link {
     box-sizing: border-box;
     color: #073c83;
+    display: block;
   }
 }
 
@@ -38,6 +46,14 @@ $b_menu_accordion_color: rgba(212, 202, 202, 0.0);
       color: white;
       a {
         color: white;
+      }
+
+    }
+  }
+  &.activated {
+    .b_menu_accordion__title {
+      &:after{
+        content: "\2796";
       }
     }
   }
@@ -53,7 +69,7 @@ $b_menu_accordion_color: rgba(212, 202, 202, 0.0);
       color: white;
       background-color: red;
     }
-    &:hover{
+    &:hover {
       background-color: red;
     }
   }
@@ -75,23 +91,23 @@ $b_menu_accordion_color: rgba(212, 202, 202, 0.0);
 }
 
 .b_menu_accordion__title,
-.b_menu_accordion__sub_item{
+.b_menu_accordion__sub_item {
   min-height: 17px;
   padding: 5px;
 
 }
 
-.b_menu_accordion__link{
+.b_menu_accordion__link {
   text-decoration: none;
-  &.link_item{
+  &.link_item {
     display: block;
     width: 100%;
     height: 100%;
     padding: 5px;
-    &:hover{
+    &:hover {
       background-color: #e3e9ec;
     }
-    &.active{
+    &.active {
       background-color: red;
       color: #fff;
     }

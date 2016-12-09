@@ -127,9 +127,17 @@ table {
     height: 100%; }
     .b_menu_accordion .b_menu_accordion__title:hover {
       background-color: #e3e9ec; }
+    .b_menu_accordion .b_menu_accordion__title:after {
+      content: '\02795';
+      /* Unicode character for "plus" sign (+) */
+      font-size: 13px;
+      color: #777;
+      float: right;
+      margin-left: 5px; }
   .b_menu_accordion .b_menu_accordion__link {
     box-sizing: border-box;
-    color: #073c83; }
+    color: #073c83;
+    display: block; }
 
 .b_menu_accordion__item, .b_menu_accordion__sub_item {
   background: rgba(212, 202, 202, 0);
@@ -140,6 +148,8 @@ table {
     color: white; }
     .b_menu_accordion__item.active .b_menu_accordion__title a, .active.b_menu_accordion__sub_item .b_menu_accordion__title a {
       color: white; }
+  .b_menu_accordion__item.activated .b_menu_accordion__title:after, .activated.b_menu_accordion__sub_item .b_menu_accordion__title:after {
+    content: "\2796"; }
 
 .b_menu_accordion__sub_item.active {
   background-color: red;
