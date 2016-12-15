@@ -190,3 +190,37 @@ table {
     .b_menu_accordion__link.link_item.active {
       background-color: red;
       color: #fff; }
+
+.b_btn.hamburger {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  background-color: #6a4d38;
+  border: none; }
+  .b_btn.hamburger::before {
+    position: absolute;
+    top: 13px;
+    left: 6px;
+    content: '';
+    width: 36px;
+    height: 2px;
+    background-color: #fff;
+    box-shadow: 0 10px 0 0 #fff, 0 20px 0 0 #fff; }
+  .b_btn.hamburger__close::before, .b_btn.hamburger__close::after {
+    content: '';
+    position: absolute;
+    top: 24px;
+    left: 8px;
+    width: 36px;
+    height: 2px;
+    background-color: #fff; }
+  .b_btn.hamburger__close::before {
+    -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+    box-shadow: none; }
+  .b_btn.hamburger__close::after {
+    -webkit-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+            transform: rotate(-45deg); }
