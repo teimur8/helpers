@@ -1,1 +1,0 @@
- @"C:\Users\it06\_sublime\sublime_text.exe" "!.!"
