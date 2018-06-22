@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * of documentation
+ *  https://www.yiiframework.com/doc/guide/2.0/en/tutorial-core-validators#core-validators
+ */
+
 class Rules extends Form
 {
     public function rules()
@@ -13,6 +18,23 @@ class Rules extends Form
         };
         
         return [
+    
+            [
+                'country_id',
+                'exist',
+                'targetClass'     => Countries::class,
+                'targetAttribute' => 'country_id',
+                'message'         => 'Укажите страну из списка',
+            ],
+
+            [
+                'country_id',
+                'unique',
+                'targetClass'     => Countries::class,
+                'targetAttribute' => 'country_id',
+                'message'         => 'Укажите страну из списка',
+            ],
+            
             ['archiveAt', 'datetime', 'format' => 'php:Y-m-d H:i:s'],
             
             [
@@ -28,7 +50,7 @@ class Rules extends Form
             
             ['permittedCategoryIds', CategoryIdsValidator::class],
             
-            ['type', 'in', 'range' => PostType::keys()],
+            ['type', 'in', 'range' => [1, 2, 3, 4]],
             
             ['title', 'required', 'when' => $onNotDraftCondition],
             [
