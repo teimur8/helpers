@@ -1,0 +1,5 @@
+// each
+foreach (Profile::find()->each(1000) as $profile) {}
+
+// deleteAll
+ChangePhoneNumberRequest::deleteAll(sprintf('valid_until <= :now'), [':now' => gmdate('Y-m-d H:i:s')]);
