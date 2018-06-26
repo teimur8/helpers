@@ -1,0 +1,49 @@
+# https://www.8host.com/blog/zashhita-ssh-s-pomoshhyu-fail2ban-centos-6/
+# See jail.conf(5) man page for more information
+
+### /etc/fail2ban/jail.conf
+....
+[DEFAULT]
+ignoreip = 127.0.0.1 89.107.97.115
+# на сутки
+bantime  = 86400
+# в течении часа
+findtime  = 36000
+# попыток
+maxretry = 3
+
+[ssh-iptables]
+enabled  = true
+filter   = sshd
+action   = iptables[name=SSH, port=ssh, protocol=tcp]
+# sendmail-whois[name=SSH, dest=root, sender=fail2ban@example.com]
+logpath = %(sshd_log)s
+maxretry = 5
+[INCLUDES]
+....
+##3
+
+
+
+
+systemctl reload fail2ban
+tail -f /var/log/fail2ban.log
+iptables -L
+
+
+service fail2ban status
+
+
+
+systemctl enable fail2ban
+
+
+## https://losst.ru/nastrojka-fail2ban-centos-7
+## https://www.dmosk.ru/instruktions.php?object=fail2ban
+#
+#cat /etc/fail2ban/jail.conf
+#[sshd]
+#enabled = true
+#port = ssh
+#logpath = %(sshd_log)s
+#backend = %(sshd_backend)s
