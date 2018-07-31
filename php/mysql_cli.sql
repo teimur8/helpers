@@ -27,3 +27,16 @@ flush privileges;
 -- table info;
 describe all_articles;
 show create table all_articles \G;
+
+
+-- info
+select * from  information_schema.PROCESSLIST \G;
+select TIME, STATE, INFO, MEMORY_USED  from  information_schema.PROCESSLIST \G;
+show processlist \G;
+
+
+-- длина
+SELECT *, LENGTH(all_articles.article) AS 'length'
+FROM all_articles
+ORDER BY LENGTH(all_articles.article) DESC
+LIMIT 10;
