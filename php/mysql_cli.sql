@@ -40,3 +40,14 @@ SELECT *, LENGTH(all_articles.article) AS 'length'
 FROM all_articles
 ORDER BY LENGTH(all_articles.article) DESC
 LIMIT 10;
+
+
+
+limit 10000
+
+select a.*, a2.id as 'article_id' from article_links a
+left join all_articles a2 on (a2.supplierid = a.supplierid and a2.article = a.datasupplierarticlenumber)
+INTO OUTFILE '/tmp/article_links.csv'
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n';
