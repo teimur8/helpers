@@ -51,3 +51,15 @@ INTO OUTFILE '/tmp/article_links.csv'
 FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n';
+
+
+
+-- insert distinct
+INSERT INTO all_articles ( all_articles.supplierid, all_articles.article )
+SELECT DISTINCT
+article_attributes.supplierid,
+article_attributes.datasupplierarticlenumber
+FROM
+	article_attributes
+WHERE
+	NOT EXISTS ( SELECT 1 FROM all_articles WHERE article_attributes.supplierid = all_articles.supplierid AND article_attributes.datasupplierarticlenumber = all_articles.article )
