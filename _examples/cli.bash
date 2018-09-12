@@ -25,6 +25,8 @@ lsof -i | grep 22
 // filesystem
 find . -delete //удалить все в папке
 find  path -type d -ctime +2 -exec echo {} \; //показывает фаилы старше 2 дней
+find  /var/* -type f  -cmin +60 -exec rm -rf {} \; # delete files
+find  /var/* -type d  -cmin +60 -exec rmdir {} + 2>/dev/null; # delete directories
 du -hs * | sort -h   // по папкам
 df -h   // по дискам
 
