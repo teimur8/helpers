@@ -63,3 +63,11 @@ FROM
 	article_attributes
 WHERE
 	NOT EXISTS ( SELECT 1 FROM all_articles WHERE article_attributes.supplierid = all_articles.supplierid AND article_attributes.datasupplierarticlenumber = all_articles.article )
+
+-- insert or update
+INSERT INTO `parts` (`shop_id`, `article_id`, `is_active`, `is_new`, `quantity`, `price`, `description`) VALUES
+('20', '1', '1', '1', '10', '310', ''),
+('20', '2', '1', '1', '10', '363', '') ON DUPLICATE KEY
+UPDATE
+	shop_id = VALUES(shop_id),
+	article_id = VALUES(article_id)
