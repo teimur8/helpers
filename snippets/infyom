@@ -1,0 +1,9 @@
+php artisan infyom:scaffold ClientBonusHistory --fieldsFile=database\crudGenerator\client_bonus_history.json
+php artisan infyom:rollback ClientBonusHistory scaffold
+
+php artisan migrate:rollback
+php artisan infyom:rollback ClientBonusRules scaffold
+
+fields_sample.json (https://teimur8.quip.com/-/blob/TKPAAATQ7kA/w3lenDKNa9TWu1W-bxq3NA?name=fields_sample.json)
+
+htmlType http://labs.infyom.com/laravelgenerator/docs/5.5/fields-input-guide
