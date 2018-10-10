@@ -19,6 +19,9 @@ show slave status \G;
 
 
 
+show variables like 'max_connections'
+show status like '%onn%'
+
 
 #mysqldump -uroot -pstrongpassword --single-transaction b2b_adkulan_kz | gzip > db_prod_adkulan.sql.gz
 #mysqldump -uroot -pstrongpassword --single-transaction b2b_adkulan_kz_dev | gzip > db_prod_adkulan_dev.sql.gz
