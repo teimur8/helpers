@@ -29,3 +29,6 @@ show status like '%onn%'
 #mysqldump -uroot -pstrongpassword
 #
 #gunzip < /path/to/outputfile.sql.gz | mysql -u USER -pPASSWORD DATABASE
+
+
+mysqld_safe --skip-grant-tables &
