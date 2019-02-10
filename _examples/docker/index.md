@@ -1,5 +1,4 @@
-`
-// Error unauthorized: incorrect username or password
+## Error unauthorized: incorrect username or password
 docker logout
 
 ## List Docker CLI commands
@@ -21,5 +20,3 @@ docker image ls
 docker container ls
 docker container ls --all
 docker container ls -aq
-
-`
