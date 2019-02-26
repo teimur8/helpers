@@ -125,3 +125,41 @@ git pull // получение
 
 
 git config --global http.proxy http://proxyuser:proxypass@proxyaddress:8080
+
+
+// команды
+
+cat /proc/version -проверить версию линукса
+
+yum update
+
+// Install MySQL Server on CentOS
+https://support.rackspace.com/how-to/installing-mysql-server-on-centos/
+
+
+ps aux | grep mysql
+
+
+# /etc/crontab
+* * * * * php /var/www/php-deamon/app.php &>/dev/null #every minute
+
+
+----------------
+
+#commands
+service cron reload
+
+#logs
+/var/log/syslog
+grep CRON /var/log/syslog
+
+
+
+
+
+
+
+
+// alias
+alias du1='du -sh * | sort -h'
+alias gitlog='git log --graph --all -n 20 --pretty=format:"%C(yellow)%h %C(cyan)%C(bold)%d% %C(cyan)(%cr) %C(green)%ce%Creset %s"'
