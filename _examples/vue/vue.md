@@ -1,5 +1,7 @@
 ### Building Controlled Components
 
+[link](https://codesandbox.io/s/oxxlx055xy?from-embed)
+
 ```html
 <input :value="email" @input="event = $event.target.value" />
 ```
@@ -15,6 +17,8 @@ v-model="input"
 ```
 
 ### Customizing Controlled Component Bindings
+
+[link](https://codesandbox.io/s/mqnzm84plx?from-embed)
 
 Change value to toggled and input to toggle
 
@@ -125,38 +129,55 @@ $emit('open:confirm-delete-modal')
 @open:confirm-delete-modal="'event run'"
 ```
 
-// slots
-// component
-<template>
-<div>
-<header><slot name="header"></slot></header>
-<section><slot></slot></section>
-<footer><slot name='footer'>Default content. Delete after insert slot with name 'footer'</slot></footer>
-<slot name='img'></slot>
-</div>
-</template>
+### Native-Style Buttons Using Slots and Class Merging
 
+**Component.vue**
+
+```html
+<div>
+  <header>
+    <slot name="header"></slot>
+  </header>
+  <section>
+    <slot></slot>
+  </section>
+  <footer>
+    <slot name="footer">
+      Default content. Delete after insert slot with name 'footer'
+    </slot>
+  </footer>
+  <slot name="img"></slot>
+</div>
+```
+
+```html
 <component>
     <template slot="header">Header</template>
     section slot
     <div slot="footer">footer slot with div</div>
     <img slot="img" src=""/>
 </componnent>
+```
 
-// slot inheriting
-// https://codesandbox.io/s/jj8vjjxlk9?from-embed
+### slot inheriting
 
-// ModalDialog.vue
+[link](https://codesandbox.io/s/jj8vjjxlk9?from-embed)
+
+**ModalDialog.vue**
+
+```html
 <template>
-<portal to="modals" v-if="show">
-<div class="modal-backdrop" v-show="show">
-<div class="modal">
-<slot></slot>
-</div>
-</div>
-</portal>
+  <portal to="modals" v-if="show">
+    <div class="modal-backdrop" v-show="show">
+      <div class="modal">
+        <slot></slot>
+      </div>
+    </div>
+  </portal>
 </template>
+```
 
+```js
 <script>
 export default {
   props: ["show"],
@@ -190,17 +211,22 @@ export default {
   }
 }
 </script>
+```
 
 // ConfirmDeleteModal
-<template>
-<modal-dialog :show="show" @close="cancel">
-<h1 class="text-center text-2xl font-bold mb-4">
-Are you sure?
-</h1>
-</modal-dialog></template>
 
-<script>
-import ModalDialog from "./ModalDialog.vue"
+```html
+<template>
+  <modal-dialog :show="show" @close="cancel">
+    <h1 class="text-center text-2xl font-bold mb-4">
+      Are you sure?
+    </h1>
+  </modal-dialog>
+</template>
+```
+
+```js
+import ModalDialog from "./ModalDialog.vue";
 
 export default {
   components: {
@@ -209,19 +235,20 @@ export default {
   props: ["show", "accountId"],
   methods: {
     cancel() {
-      this.$emit("close")
+      this.$emit("close");
     },
     confirmDelete() {
-      console.log(`Deleting account ${this.accountId}...`)
-      this.$emit("close")
+      console.log(`Deleting account ${this.accountId}...`);
+      this.$emit("close");
     }
   }
-}
-</script>
+};
+```
 
 ### Passing Data Up Using Scoped Slots
 
 [link](https://codesandbox.io/s/nwz1xpkyl0?from-embed)
+
 **ContactList.vue**
 
 ```html
@@ -288,6 +315,18 @@ export default {
 ### Render Functions and Components
 
 [link](https://codesandbox.io/s/k05o3npx25?from-embed)
+
+```js
+// HelloWorld.vue
+export default {
+  render(createElement) {
+    return createElement(span,{
+        attrs: {
+          class: "text-xl"
+        },
+    }, 'Hello World')
+}
+```
 
 ```js
   import HelloWorld from "./components/HelloWorld.vue"
@@ -583,4 +622,148 @@ export default {
 
 ```html
 
+```
+
+[link](https://codesandbox.io/s/o98y1l735y?from-embed)
+[link](https://codesandbox.io/s/ykypmk03xj?from-embed)
+[link](https://codesandbox.io/s/oozwlvk36?from-embed)
+[link](https://codesandbox.io/s/o95oq681l6?from-embed)
+[link](https://codesandbox.io/s/8n0mnm2v70?from-embed)
+[link](https://codesandbox.io/s/n7mw5871v0?from-embed)
+[link](https://codesandbox.io/s/w66mzknr27?from-embed)
+[link](https://codesandbox.io/s/vyxl1z5pp5?from-embed)
+
+### Event Bus
+
+```js
+// event-bus.js
+import Vue from "vue";
+export const EventBus = new Vue();
+```
+
+```js
+// event-mixin.js
+import EventBus from "./event-bus";
+export const eventMixin = {
+  methods: {
+    busEmit(event, data) {
+      return EventBus.$emit(`${event}-${this.eventBusId}`, data);
+    },
+    busListen(event, callback) {
+      return EventBus.$on(`${event}-${this.eventBusId}`, callback);
+    },
+    busListenOff(event, callback) {
+      return EventBus.$off(`${event}-${this.eventBusId}`, callback);
+    },
+    busListenOnce(event, callback) {
+      return EventBus.$once(`${event}-${this.eventBusId}`, callback);
+    }
+  }
+};
+```
+
+```js
+import { eventMixin } from "./event-mixin";
+
+export default {
+  mixins: [eventMixin],
+
+  mounted() {
+    this.$el.addEventListener("click", () =>
+      this.busEmit("optionSelected", this.value)
+    );
+    this.busListen("activeOptionIndexChange", value => {
+      // do somthing
+    });
+  }
+};
+```
+
+### Provide / Inject
+
+**The provide/inject binding are NOT reactive**
+https://medium.com/@znck/provide-inject-in-vue-2-2-b6473a7f7816
+
+```js
+// Parent
+export default {
+  data() {
+    return {
+      eventBusId: Math.random()
+        .toString(36)
+        .substring(7),
+      bar: "bar"
+    };
+  },
+
+  provide() {
+    const foo = {};
+    Object.defineProperty(foo, "bar", {
+      enumerable: true,
+      get: () => this.bar
+    });
+    return {
+      eventBusId: this.eventBusId,
+      disableDefaultSearch: falses,
+      foo
+    };
+  }
+};
+```
+
+```js
+// Child
+export default {
+  methods: {
+    onInput() {
+      this.$emit("input", this.query);
+
+      if (!this.disableDefaultSearch) {
+        this.busEmit("searchInput", this.query);
+      }
+    }
+  },
+  inject: ["eventBusId", "disableDefaultSearch"]
+};
+```
+
+### File Upload
+
+```html
+<input type="file" @change="atChange" />
+```
+
+```js
+atChange(event)
+{
+    this.file = event.target.files[0];
+
+    let reader = new FileReader();
+    reader.readAsDataURL(this.file );
+
+    reader.onload = event => {
+        this.imageUrl = event.target.result;
+    }
+},
+```
+
+```js
+// upload to server
+upload(event)
+{
+    let form = new FormData();
+    form.append(`file`, this.file);
+    form.set(`name`, this.name);
+
+    axios({
+      method: 'post',
+      url: this.url,
+      data: form,
+      config: { headers: {'Content-Type': 'multipart/form-data' }}
+    })
+    .then(response => {
+    })
+    .catch(error => {
+    });
+},
 ```
