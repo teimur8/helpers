@@ -244,3 +244,153 @@ Function.prototype; // {toString : FUNCTION, call : FUNCTION, bind : FUNCTION}
 multiplyBy2.hasOwnProperty("score"); // Where's this function?
 Function.prototype.__proto__; // Object.prototype {hasOwnProperty: FUNCTION}
 ```
+
+### Prototype
+
+```js
+var o = {
+  a: 2,
+  m: function() {
+    return this.a + 1;
+  }
+};
+
+console.log(o.m()); // 3
+// в этом случае при вызове 'o.m' this указывает на 'o'
+
+var p = Object.create(o);
+// 'p' - наследник 'o'
+```
+
+```js
+var o = { a: 1 };
+// o ---> Object.prototype ---> null
+
+var a = ["yo", "whadup", "?"];
+// a ---> Array.prototype ---> Object.prototype ---> null
+
+function f() {
+  return 2;
+}
+// f ---> Function.prototype ---> Object.prototype ---> null
+```
+
+ECMAScript 5
+
+```js
+var a = { a: 1 };
+// a ---> Object.prototype ---> null
+
+var b = Object.create(a);
+// b ---> a ---> Object.prototype ---> null
+
+var c = Object.create(b);
+// c ---> b ---> a ---> Object.prototype ---> null
+
+var d = Object.create(null);
+// d ---> null
+
+console.log(d.hasOwnProperty);
+// undefined, т.к. 'd' не наследуется от Object.prototype
+```
+
+### Наследование
+
+```js
+// --------- Класс-Родитель ------------
+// Конструктор родителя пишет свойства конкретного объекта
+function Animal(name) {
+  this.name = name;
+  this.speed = 0;
+}
+
+// Методы хранятся в прототипе
+Animal.prototype.run = function() {
+  alert(this.name + " бежит!");
+};
+
+// --------- Класс-потомок -----------
+// Конструктор потомка
+// Animal.call(this, name), но apply надёжнее, так как работает с любым количеством аргументов.
+function Rabbit(name) {
+  Animal.apply(this, arguments);
+}
+
+// Унаследовать
+Rabbit.prototype = Object.create(Animal.prototype);
+
+// Желательно и constructor сохранить
+Rabbit.prototype.constructor = Rabbit;
+
+// Методы потомка
+Rabbit.prototype.run = function() {
+  // Вызов метода родителя внутри своего
+  Animal.prototype.run.apply(this);
+  alert(this.name + " подпрыгивает!");
+};
+
+// Готово, можно создавать объекты
+var rabbit = new Rabbit("Кроль");
+rabbit.run();
+```
+
+```js
+class Animal {
+  constructor(name) {
+    this.name = name;
+    this.speed = 0;
+  }
+  run() {
+    alert(this.name + " бежит!");
+  }
+}
+
+class Rabbit extends Animal {
+  constructor(name) {
+    super(name);
+  }
+  run() {
+    super.run();
+    alert(this.name + " бежит 2!");
+  }
+}
+
+// Готово, можно создавать объекты
+var rabbit = new Rabbit("Кроль");
+rabbit.run();
+```
+
+### call,apply, bind
+
+- this – это текущий объект при вызове «через точку» и новый объект при конструировании через new.
+- call и apply явно указывают this
+- func.call(context, arg1, arg2) идентичен вызову func.apply(context, [arg1, arg2])
+
+```js
+// При вызове функции как метода:
+obj.func(...)    // this = obj
+obj["func"](...)
+
+// При обычном вызове:
+func(...) // this = window (ES3) /undefined (ES5)
+
+// В new:
+new func() // this = {} (новый объект)
+
+// Явное указание:
+func.apply(context, args) // this = context (явная передача)
+func.call(context, arg1, arg2, ...)
+```
+
+- Методы call/apply вызывают функцию с заданным контекстом и аргументами.
+- А bind не вызывает функцию. Он только возвращает «обёртку», которую мы можем вызвать позже, и которая передаст вызов в исходную функцию, с привязанным контекстом.
+
+```js
+function bind(func, context) {
+  return function() { // (*)
+    return func.apply(context, arguments);
+  };
+}
+
+var wrapper = func.bind(context[, arg1, arg2...]);
+```

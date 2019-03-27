@@ -31,3 +31,19 @@ const Layout = props => (
 );
 export default Layout;
 ```
+
+### Lifecicle functions
+
+```js
+// http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
+export default class Home extends React.Component {
+  constructor() {
+    super();
+  }
+  componentDidMount() {}
+  componentDidUpdate() {}
+  componentWillUnmount() {}
+  getSnapshotBeforeUpdate(prevProps, prevState) {}
+  render() {} // required
+}
+```

@@ -60,3 +60,33 @@ console.log(person.species); // prints 'human'
 ```
 
 #### Spread & Rest Operator
+
+### HOC - higher-order component
+
+Обычная обертка которая возвращает компонент, можно вставить пропсы, функции или
+условно изменить рендеринг
+
+```js
+// withAuth.js
+import React from "react";
+export default function(Component) {
+  return class withAuth extends React.Component {
+    funct1() {
+      alert(1);
+    }
+
+    render() {
+      let var1 = "1";
+      return <Component var1={var1} funct1={this.funct1} {...this.props} />;
+    }
+  };
+}
+```
+
+```js
+const Secret = props => {
+  return <h1>Secret page</h1>;
+};
+
+export default withAuth(Secret);
+```
