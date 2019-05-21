@@ -12,12 +12,19 @@ firewall-cmd --state
 firewall-cmd --get-active-zones
 firewall-cmd --zone=public --list-all
 firewall-cmd --zone=public --add-port=3306/tcp --permanent
+firewall-cmd --zone=public --remove-port=443/tcp --permanent // --remove-service=ssh 
 firewall-cmd --reload
+
+firewall-cmd --permanent --add-forward-port=port=3306:proto=tcp:toport=33306
+
+firewall-cmd --zone=public --add-masquerade --permanent
+firewall-cmd --zone=public --add-forward-port=port=9200:proto=tcp:toport=39200 --permanent
 
 
 // network
 netstat -anp | grep 3306 //find listening port
 netstat -atn
+netstat -ltup 
 nmap -sT -O localhost
 lsof -i | grep 22
 

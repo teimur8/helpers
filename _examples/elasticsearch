@@ -1,3 +1,0 @@
-/_cat/indices
-
-sudo systemctl stop elasticsearch.service; sudo systemctl start elasticsearch.service

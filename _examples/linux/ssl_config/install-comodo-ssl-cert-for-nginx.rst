@@ -44,6 +44,12 @@ Combine everything for nginx [2]_:
    key you generated earlier::
 
     server {
+        listen 80;
+        server_name example.com;
+        return 301 https://example.com$request_uri;
+    }
+
+    server {
         listen 443;
 
         ssl on;
