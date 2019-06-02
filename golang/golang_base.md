@@ -1,18 +1,55 @@
 
 # Типы
 
+- basic types: numbers, strings, and Booleans;
+- aggregate types: arrays and structs;
+- reference types: pointers, slices, maps, functions, and channels;
+- interface types.
+
+
 ```go
+// Базовые: numbers, string, bool
+int,uint(|8|16|32|64),
+byte = uint8 // одно и тоже
+rune = int32, // Unicode code point
+float(32|64),complex(64|128)
+string: “” `` // одинарных нет
 ```
 
-
+# Variables (Declaration & Initialization)
 
 ```go
-// внутри функции можно использовать оператор :=
+// default init
+var name type
+var i int
+// explicit
+var name type = expression
+var i int = 12
+// short
+name := expression
+i := 12
 func main(){
     a := func(){}
     b := 10
 }
+// := - is a declaration
+// = - is an assignment
+```
 
+## Zero value
+
+- 0 : numbers-0 : numbers
+- false: bool-false: bool
+- “” : string-“” : string
+- nil : reference type-nil : reference type
+
+
+
+```go
+
+
+
+# Scope
 
 // группировать типы аргументов
 // возвращать несколько значений
