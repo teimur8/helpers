@@ -40,7 +40,17 @@ mutex, от mutual exclusion — «взаимное исключение», for 
 [mutex](https://github.com/GoesToEleven/GolangTraining/blob/master/22_go-routines/07_mutex/main.go)
 [mutex_ex_2](https://github.com/ardanlabs/gotraining/blob/master/topics/go/concurrency/data_race/example3/example3.go)
 
+## Atomic
 
+Package atomic provides low-level atomic memory primitives useful for implementing synchronization algorithms.
+
+[doc](https://godoc.org/sync/atomic)
+[atomicity](https://github.com/GoesToEleven/GolangTraining/blob/master/22_go-routines/08_atomicity/main.go)
+
+## Channels
+
+[README](https://github.com/ardanlabs/gotraining/blob/master/topics/go/concurrency/channels/README.md)
+[channels](https://github.com/GoesToEleven/GolangTraining/tree/master/22_go-routines/09_channels)
 
 
 
