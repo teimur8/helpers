@@ -64,7 +64,7 @@ class FormResultField extends Base
 {
     /**
      * @ORM\ManyToOne(targetEntity="FormResult", inversedBy="resultFields")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(name="result_id", referencedColumnName="id")
      */
     protected $formResult;
 
@@ -81,6 +81,13 @@ class FormResultField extends Base
 
 }
 
+$form = new FormResult();
+$em->persist($form);
 
+$formResult1 = new FormResultField();
+$formResult1 = new FormResultField();
+$em->persist($formResult1);
+$em->persist($formResult1);
 
+$em->flush();
 ```
