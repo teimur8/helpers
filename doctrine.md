@@ -76,6 +76,7 @@ class FormResultField extends Base
      * Тебя много, и вы можете принадлежать одному  FormResult
      * @ORM\ManyToOne(targetEntity="FormResult", inversedBy="resultFields")
      * @ORM\JoinColumn(name="result_id", referencedColumnName="id")
+     * @ORM\OrderBy({"sortableRank" = "ASC"}) // можно добавить сотировку
      */
     protected $formResult;
 
