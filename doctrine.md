@@ -1,4 +1,30 @@
 
+
+# Query
+
+```php
+
+$rep = $em->getRepository(FormResult::class);
+
+$item = $rep->find(675);
+$items = $rep->findBy(['formResult' => $item])
+
+// update
+$qb = $rep->createQueryBuilder('mo');
+
+$qb->update()
+    ->set('mo.userUuid', ':newUuid')
+    ->where('mo.userUuid = :oldUuid')
+    ->setParameters([
+        'newUuid' => $newUuid,
+        'oldUuid' => $oldUuid,
+    ]);
+
+$qb->getQuery()->execute();
+
+```
+
+
 # Relations
 
 - Unidirectional - когда связь прописана только на одной стороне.
@@ -107,13 +133,3 @@ $em->flush();
 
 PersistentCollection - это временнаяя коллекция для ленивой загрузки, она будте вызвана с случае обращения к элементу. За это отвечает параметр fetch и может иметь три параметра "LAZY", "EAGER", "EXTRA_LAZY".
 
-# Query
-
-```php
-
-$rep = $em->getRepository(FormResult::class);
-
-$item = $rep->find(675);
-$items = $rep->findBy(['formResult' => $item])
-
-```
