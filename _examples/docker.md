@@ -20,3 +20,8 @@ docker image ls
 docker container ls
 docker container ls --all
 docker container ls -aq
+
+
+```sh
+cat services_\(1\).sql | dc exec -T db /usr/bin/mysql -u 'user' --password=pass dbName
+```
