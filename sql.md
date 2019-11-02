@@ -160,3 +160,12 @@ SELECT 1229,'ONZOIL SG CF 20W-50','4.5', 1
 LEFT JOIN product_oil ON product_oil.id = temp.id
 
 ```
+
+### Crate from select
+```sql
+CREATE TABLE all_article_doubles AS (
+SELECT *, COUNT(*) AS c1
+FROM all_articles a
+GROUP BY a.supplierid, a.article_clear
+HAVING c1 > 1);
+```
