@@ -169,3 +169,13 @@ FROM all_articles a
 GROUP BY a.supplierid, a.article_clear
 HAVING c1 > 1);
 ```
+
+### delete from select in
+```sql
+-- SELECT * FROM posts WHERE id IN (
+DELETE FROM posts WHERE id IN (
+    SELECT * FROM (
+        SELECT id FROM posts GROUP BY id HAVING ( COUNT(id) > 1 )
+    ) AS p
+)
+```
