@@ -3,6 +3,7 @@
 rename -v 's/#1571288401.txt/.csv/' *.txt
 # вытаскиваем русские слова
 grep -hr "[А-Яа-я]" /media/user1/linux/gdrive/php/ezyparts/resources | sed 's/[^А-Яа-я ]//gi'
+grep -r "8988" projects/*/.env
 ```
 
 ### docker
