@@ -17,3 +17,43 @@ dc restart sphinx
 dc exec sphinx bash # войти в контйнер
 
 ```
+### mysqldump backup table
+```bash
+#!/bin/bash
+
+# user pass database "" "table1" только table1
+# user pass database "table1 table2" все кроме table1 table2
+
+USER=$1
+PASSWORD=$2
+DATABASE=$3
+EXCLUDE=$4
+ONLY=$5
+
+
+tables=$(eval "mysql -u$USER -p$PASSWORD -BN -e \"use $DATABASE; show tables\"")
+for word in $tables
+do
+
+    path="/root/backup/files/${DATABASE}-${word}-$(date +"%m_%d_%Y_%H_%M")"
+    command="mysqldump -u$USER -p$PASSWORD --single-transaction $DATABASE $word | gzip > ${path}.sql.gz"
+
+    # исключаем
+    if [[ $EXCLUDE == *"$word"* ]]; then
+        continue
+    fi
+
+    # включаем только их
+    if [ $ONLY ];then
+        if [[ $ONLY == *"$word"* ]]; then
+            echo $word
+            eval $command
+        fi
+         continue;
+    fi
+
+    echo $word
+    eval $command
+
+done
+```
