@@ -57,3 +57,22 @@ do
 
 done
 ```
+
+
+# davfs2 yandex.disc
+
+[link](http://it-inside.org/2016/04/yandex-disk-and-auto-mount-with-davfs/)
+
+```bash
+sudo mkdir /mnt/yandex.disk
+sudo apt install davfs2
+sudo mount -t davfs -o gid=1000,uid=1000 https://webdav.yandex.ru /mnt/yandex.disk/
+
+# config
+sudo nano /etc/davfs2/secrets
+/mnt/yandex.disk логин пасс. - В пароле не должно быть #
+
+# automount
+sudo nano /etc/rc.local
+sleep 60 && sudo mount -t davfs -o gid=1000,uid=1000 https://webdav.yandex.ru /mnt/yandex.disk/
+```
