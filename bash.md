@@ -1,3 +1,19 @@
+### bash giude
+```sh
+#!/bin/bash or #!/bin/sh # start line of file
+
+VAR=10 #variables
+VAR2=/file/path
+VAR3="String"
+VAR4=$(($VAR + 10)) #arithmetic
+
+echo $VAR $VAR2 $VAR3
+echo ${VAR}abc
+
+```
+
+
+
 ### same
 ```sh
 rename -v 's/#1571288401.txt/.csv/' *.txt
