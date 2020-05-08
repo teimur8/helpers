@@ -2,13 +2,32 @@
 ```sh
 #!/bin/bash or #!/bin/sh # start line of file
 
-VAR=10 #variables
+#variables
+VAR=10 
 VAR2=/file/path
 VAR3="String"
 VAR4=$(($VAR + 10)) #arithmetic
 
 echo $VAR $VAR2 $VAR3
 echo ${VAR}abc
+
+#test
+[ -f "file.text" ], [ "$I" -lt 25 ],[ "$A" = "abc" ],[ "$A" != "abc" ]
+
+if [ -f "file.text" ]; then
+    cat "file.txt"
+else
+    echo "file not found
+fi
+
+if test -f "file.text" ; then
+    cat "file.txt"
+else
+    echo "file not found
+fi
+
+
+
 
 ```
 
